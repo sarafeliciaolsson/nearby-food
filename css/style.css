@@ -27,7 +27,8 @@
 }
 
 #menuPlacement {
-    margin-top: -10px;
+    position: absolute;
+    
 }
 
 #portfolio {
@@ -38,7 +39,6 @@
     display: none;
     height: 75%;
 }
-
 
 #footer {
     display: none;
@@ -56,9 +56,5 @@
     opacity: 1;
     height: auto;
     padding-bottom: 10px;
-}
-
-.bla {
-    position: absolute;
-    left: 100%;
+    
 }

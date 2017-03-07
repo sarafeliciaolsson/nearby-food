@@ -84,7 +84,7 @@ function createMarker(place) {
       }
 
 
-// ----- DÖLJER SECTIONEN FÖR RESTAURANGRESULTATEN & VISAR NÄR MAN TRYCKER PÅ SÖK -----
+// ----- DÖLJER ALLT UTOM FÖRSTASIDAN I FÖRSTA LÄGET & VISAR ALLT NÄR MAN TRYCKER PÅ SÖK -----
     var searchBtn = document.querySelector("#searchBtn");
     searchBtn.addEventListener("click", show);
 
