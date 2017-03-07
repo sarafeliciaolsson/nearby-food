@@ -59,23 +59,44 @@ function callback(results, status) {
 	if (status === google.maps.places.PlacesServiceStatus.OK) {
 	  for (var i = 0; i < results.length; i++) {
 		createMarker(results[i]);
+		createInput(results[i]);  
 	  }
 	}
+}
+
+function createInput(place){
+	var photos = place.photos;
+  	if (!photos) {
+    	return;
+  	}
+	//var p1 = userPosition;
+	//var p2 = place.geometry.location.lat() + " " + place.geometry.location.lng() ; 
+	$("#test").append('<h1>' + place.name + '</h1>' +
+					 '<img src="' + photos[0].getUrl({'maxWidth': 400, 'maxHeight': 400}) + '" alt="img">');
+
+	//console.log((google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
 }
 
 /**
 * Funktion som skapar en marker och sätter ut den på kartan
 */
-function createMarker(place) {
-	var placeLoc = place.geometry.location;
+function createMarker(place) {	
+ 	var marker = new google.maps.Marker({
+		map: map,
+		position: place.geometry.location,
+		title: place.name
+  	});
+	
+	/*var placeLoc = place.geometry.location;
 	var marker = new google.maps.Marker({
 	  map: map,
-	  position: userPosition
+	  position: userPosition,
+		icon: photos[0].getUrl({'maxWidth': 35, 'maxHeight': 35})
 	});
-	
+	*/
 	var marker1 = new google.maps.Marker({
 	  map: map,
-	  position: place.geometry.location
+	  position: place.geometry.location,
 	});
 
 	google.maps.event.addListener(marker, 'click', function() {
