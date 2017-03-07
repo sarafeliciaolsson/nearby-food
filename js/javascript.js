@@ -1,15 +1,14 @@
 var map;
+var userPosition;
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
 	  center: {lat: 55.5916628, lng: 12.9875187},
-	  zoom: 13
+	  zoom: 12
 	});
 }
 
-$( "#searchBtn" ).click(function() {
+$( ".ourBtn" ).click(function() {
 	alert("Test");
-	var userPos;
-    var infoWindow = new google.maps.InfoWindow({map: map});
 	
 	if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
@@ -17,24 +16,10 @@ $( "#searchBtn" ).click(function() {
               lat: position.coords.latitude,
               lng: position.coords.longitude
             };
-			userPos = {lat:pos["lat"], lng:pos["lng"]};
+			userPosition = {lat:pos["lat"], lng:pos["lng"]};
             console.log("LAT: " + pos["lat"])
             console.log("LNG: " + pos["lng"])
-			
-			var request = {
-				location: userPos,
-				radius: 500,
-				type: ['restaurant']	 
-			}
-			
-			infowindow = new google.maps.InfoWindow();
-			var service = new google.maps.places.PlacesService(map);
-			//service.textSearch(request, callback);
-			service.nearbySearch(request, callback);
-
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            map.setCenter(pos);
+			console.log(userPosition);
           }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
           });
@@ -43,6 +28,29 @@ $( "#searchBtn" ).click(function() {
           handleLocationError(false, infoWindow, map.getCenter());
         }
 	});
+
+$( "#searchBtn" ).click(function() {
+	if(userPosition != null){
+		var infoWindow = new google.maps.InfoWindow({map: map});
+		var request = {
+			location: userPosition,
+			radius: 500,
+			type: ['restaurant']	 
+		}
+
+		infowindow = new google.maps.InfoWindow();
+		var service = new google.maps.places.PlacesService(map);
+		service.textSearch(request, callback);
+		//service.nearbySearch(request, callback);
+
+		infoWindow.setPosition(userPosition);
+		infoWindow.setContent('Location found.');
+		map.setCenter(userPosition);	
+	}else{
+		alert("Användarens position finns inte");
+	}
+	
+});
 
 /*
 * Funktion som tar emot alla resturanger i närheten från API
@@ -62,6 +70,11 @@ function createMarker(place) {
 	var placeLoc = place.geometry.location;
 	var marker = new google.maps.Marker({
 	  map: map,
+	  position: userPosition
+	});
+	
+	var marker1 = new google.maps.Marker({
+	  map: map,
 	  position: place.geometry.location
 	});
 
@@ -72,16 +85,13 @@ function createMarker(place) {
 		infowindow.open(map, this);
 	});
 }
-     
-       
-      
 
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-      }
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+	infoWindow.setPosition(pos);
+	infoWindow.setContent(browserHasGeolocation ?
+						  'Error: The Geolocation service failed.' :
+						  'Error: Your browser doesn\'t support geolocation.');
+}
 
 
 // ----- DÖLJER ALLT UTOM FÖRSTASIDAN I FÖRSTA LÄGET & VISAR ALLT NÄR MAN TRYCKER PÅ SÖK -----
