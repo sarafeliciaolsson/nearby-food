@@ -1,0 +1,60 @@
+#map {
+        height: 100%;
+      }
+
+
+.text-vertical-center {
+    color: white;
+    
+}
+
+.text-vertical-center h1, h3 {
+    color: white;
+    text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;  
+}
+
+.ourBtn {
+    margin: 2%;
+    width: 15%;
+}
+
+#menu-toggle {
+    display: none;
+    
+}
+
+#portfolio {
+    display: none;
+}
+
+#contact {
+    display: none;
+    height: 70%;
+}
+
+#footer {
+    display: none;
+}
+
+.hide{
+    display: none;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;
+    height: 0px;
+}
+
+.show{
+    display: block;
+    opacity: 1;
+    height: auto;
+    padding-bottom: 10px;
+}
+
+.bla {
+    position: absolute;
+    left: 100%;
+}
