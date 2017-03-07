@@ -89,13 +89,13 @@ function createMarker(place) {
     searchBtn.addEventListener("click", show);
 
 function show(){
-    var menu = document.querySelector("#menu-toggle");
+    var menuSection = document.querySelector(".menu");
     var restaurantSection = document.querySelector("#portfolio");
     var mapSection = document.querySelector("#contact");
     var footerSection = document.querySelector("#footer");
     
-    if(menu.className && restaurantSection.className && mapSection.className && footerSection.className != "hide"){
-        menu.className = "show";
+    if(menuSection.className && restaurantSection.className && mapSection.className && footerSection.className !== "hide"){
+        menuSection.className = "show";
         restaurantSection.className = "show";
         mapSection.className = "show";
         footerSection.className = "show";
