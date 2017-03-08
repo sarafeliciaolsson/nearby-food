@@ -72,7 +72,9 @@ function createInput(place){
 	//var p1 = userPosition;
 	//var p2 = place.geometry.location.lat() + " " + place.geometry.location.lng() ; 
 	$("#test").append('<h1>' + place.name + '</h1>' +
-					 '<img src="' + photos[0].getUrl({'maxWidth': 400, 'maxHeight': 400}) + '" alt="img">');
+					 '<img src="' + photos[0].getUrl({'maxWidth': 400, 'maxHeight': 400}) + '" alt="img">' +  +
+					 '<h2>'+ place.formatted_address  + '</h2>');
+	console.log( place.opening_hours.weekday_text[0]);
 
 	//console.log((google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
 }
