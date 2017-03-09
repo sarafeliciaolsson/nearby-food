@@ -18,7 +18,8 @@ function initMap() {
     } else {
         //x.innerHTML = "Geolocation is not supported by this browser.";
     }
-}
+}	
+
 
 /*
 * Funktion som tar emot användarens position och sätter ut marker
@@ -28,7 +29,14 @@ function showPosition(position) {
     var latlon = {lat:position.coords.latitude, lng: position.coords.longitude};
 	console.log(latlon);
 	userPosition = latlon;
-	makeSearch(userPosition);
+
+	
+	var marker = new google.maps.Marker({
+    position: userPosition,
+    map: map,
+    title: 'Hello World!',
+	icon: 'http://maps.google.com/mapfiles/ms/icons/blue.png'	  
+  });
 }
 
 /*
@@ -58,6 +66,7 @@ function callback(results, status) {
 * Funktion som sätter ut alla resturanger i kartan och sätter ut en 
 * ikon för varje resturang
 */
+
 function createMarker(place) {
 	var placeLoc = place.geometry.location;
 	var marker = new google.maps.Marker({
@@ -72,8 +81,6 @@ function createMarker(place) {
 	  infoWindow.open(map, this);
 	});
 }
-
-
 
 
 
