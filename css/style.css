@@ -33,6 +33,12 @@
 
 #portfolio {
     display: none;
+    height: 100%;
+}
+
+.portfolio-item {
+    padding-top: 100px;
+    padding-bottom: 100px;
 }
 
 #contact {
