@@ -1,105 +1,81 @@
 var map;
 var userPosition;
-var infowindow;
+var infoWindow;
+
+/*
+* Funktion som initiera Google Maps kartan och tar redan
+* användarens position med geolocation
+*/
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
 	  center: {lat: 55.5916628, lng: 12.9875187},
 	  zoom: 12
 	});
 	
-	infowindow = new google.maps.InfoWindow();
+	infoWindow = new google.maps.infoWindow();
 	if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else {
         //x.innerHTML = "Geolocation is not supported by this browser.";
     }
-	
 }
 
+/*
+* Funktion som tar emot användarens position och sätter ut marker
+* för användarens position
+*/
 function showPosition(position) {
     var latlon = {lat:position.coords.latitude, lng: position.coords.longitude};
 	console.log(latlon);
 	userPosition = latlon;
 	makeSearch(userPosition);
-	
-	
 }
-
-function makeSearch(userPosition){
-        var service = new google.maps.places.PlacesService(map);
-        service.nearbySearch ({
-          location: userPosition,
-          radius: 500,
-          type: ['restaurant']
-        }, callback);
-	console.log("HEJ");
-}
-
-      function callback(results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          for (var i = 0; i < results.length; i++) {
-            createMarker(results[i]);
-          }
-        }
-      }
-
-
-      function createMarker(place) {
-        var placeLoc = place.geometry.location;
-        var marker = new google.maps.Marker({
-          map: map,
-          position: place.geometry.location
-        });
-		  
-		         map.setZoom(15);
-            map.panTo(marker.position);
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent(place.name);
-          infowindow.open(map, this);
-        });
-      }
-
-
 
 /*
-		
-	var request = {
-		location: userPosition,
-		radius: 500,
-		type: ['restaurant']	 
-	}
-	
-			infowindow = new google.maps.InfoWindow();
-		var service = new google.maps.places.PlacesService(map);
-		service.textSearch(request, callback);
-		//service.nearbySearch(request, callback);
-
-		infoWindow.setPosition(userPosition);
-		infoWindow.setContent('Location found.');
-		map.setCenter(userPosition);
+* Funktion som gör sökningen av närliggande resturanger från användarens * position
+*/
+function makeSearch(userPosition){
+	var service = new google.maps.places.PlacesService(map);
+	service.nearbySearch ({
+	  location: userPosition,
+	  radius: 500,
+	  type: ['restaurant']
+	}, callback);
 }
 
+/*
+* Funktion som tar emot närliggande resturanger ifrån APIn
+*/
 function callback(results, status) {
 	if (status === google.maps.places.PlacesServiceStatus.OK) {
-	  for (var i = 0; i < results.length; i++) {
-		createMarker(results[i]);
-	  }
+		for (var i = 0; i < results.length; i++) {
+			createMarker(results[i]);
+	  	}
 	}
 }
 
+/*
+* Funktion som sätter ut alla resturanger i kartan och sätter ut en 
+* ikon för varje resturang
+*/
 function createMarker(place) {
 	var placeLoc = place.geometry.location;
 	var marker = new google.maps.Marker({
 	  map: map,
 	  position: place.geometry.location
-});
+	});
 
-google.maps.event.addListener(marker, 'click', function() {
-  infowindow.setContent(place.name);
-  infowindow.open(map, this);
-});
+	map.setZoom(15);
+	map.panTo(marker.position);
+	google.maps.event.addListener(marker, 'click', function() {
+	  infoWindow.setContent(place.name);
+	  infoWindow.open(map, this);
+	});
 }
-	*/
+
+
+
+
 
 
 // ----- DÖLJER ALLT UTOM FÖRSTASIDAN I FÖRSTA LÄGET & VISAR ALLT NÄR MAN TRYCKER PÅ SÖK -----
