@@ -98,8 +98,10 @@ google.maps.event.addListener(marker, 'click', function() {
 
 
 // ----- DÖLJER ALLT UTOM FÖRSTASIDAN I FÖRSTA LÄGET & VISAR ALLT NÄR MAN TRYCKER PÅ SÖK -----
-    var searchBtn = document.querySelector("#searchBtn");
-    searchBtn.addEventListener("click", show);
+
+var searchBtn = document.querySelector("#searchBtn");
+searchBtn.addEventListener("click", show);
+
 
 function show(){
     var menuSection = document.querySelector(".menu");
