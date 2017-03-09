@@ -13,6 +13,7 @@ function initMap() {
     } else {
         //x.innerHTML = "Geolocation is not supported by this browser.";
     }
+	
 }
 
 function showPosition(position) {
@@ -20,14 +21,16 @@ function showPosition(position) {
 	console.log(latlon);
 	userPosition = latlon;
 	makeSearch(userPosition);
+	
+	
 }
 
 function makeSearch(userPosition){
         var service = new google.maps.places.PlacesService(map);
-        service.nearbySearch({
+        service.nearbySearch ({
           location: userPosition,
           radius: 500,
-          type: ['store']
+          type: ['restaurant']
         }, callback);
 	console.log("HEJ");
 }
@@ -47,7 +50,9 @@ function makeSearch(userPosition){
           map: map,
           position: place.geometry.location
         });
-
+		  
+		         map.setZoom(15);
+            map.panTo(marker.position);
         google.maps.event.addListener(marker, 'click', function() {
           infowindow.setContent(place.name);
           infowindow.open(map, this);
