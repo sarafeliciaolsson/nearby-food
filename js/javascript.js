@@ -1,6 +1,6 @@
 var map;
 var userPosition;
-var infoWindow;
+var infowindow;
 
 /*
 * Funktion som initiera Google Maps kartan och tar redan
@@ -12,7 +12,7 @@ function initMap() {
 	  zoom: 12
 	});
 	
-	infoWindow = new google.maps.infoWindow();
+	infowindow = new google.maps.InfoWindow();
 	if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else {
@@ -30,13 +30,14 @@ function showPosition(position) {
 	console.log(latlon);
 	userPosition = latlon;
 
-	
 	var marker = new google.maps.Marker({
-    position: userPosition,
-    map: map,
-    title: 'Hello World!',
-	icon: 'http://maps.google.com/mapfiles/ms/icons/blue.png'	  
-  });
+		position: userPosition,
+		map: map,
+		title: 'Hello World!',
+		icon: 'http://maps.google.com/mapfiles/ms/icons/blue.png'	  
+	});
+	
+	makeSearch(userPosition);
 }
 
 /*
