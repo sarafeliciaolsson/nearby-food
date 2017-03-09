@@ -78,8 +78,8 @@ function createMarker(place) {
 	map.setZoom(15);
 	map.panTo(marker.position);
 	google.maps.event.addListener(marker, 'click', function() {
-	  infoWindow.setContent(place.name);
-	  infoWindow.open(map, this);
+	  infowindow.setContent(place.name);
+	  infowindow.open(map, this);
 	});
 }
 
