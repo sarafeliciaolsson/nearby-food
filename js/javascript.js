@@ -82,20 +82,6 @@ function createMarker(place) {
 	  infowindow.open(map, this);
 	});
 }
-	
-	
-	var photos = place.photos;
-  	if (!photos) {
-    	return;
-  	}
-	//var p1 = userPosition;
-	//var p2 = place.geometry.location.lat() + " " + place.geometry.location.lng() ; 
-	$(".test").append('<h1>' + place.name + '</h1>' +
-					 '<img src="' + photos[0].getUrl({'maxWidth': 400, 'maxHeight': 400}) + '" alt="img">');
-
-	//console.log((google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
-	*/
-
 
 // ----- DÖLJER ALLT UTOM FÖRSTASIDAN I FÖRSTA LÄGET & VISAR ALLT NÄR MAN TRYCKER PÅ SÖK -----
 
