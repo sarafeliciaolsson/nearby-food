@@ -121,6 +121,7 @@ $('#resultFromAPI').on('click', '.selectedRestaurang', function(){
 */
 
 function createMarker(place) {
+	var los = place.geometry.location;
 	var marker = new google.maps.Marker({
 	  map: map,
 	  position: place.geometry.location
@@ -136,6 +137,13 @@ function createMarker(place) {
 			details.name,
 			details.formatted_address,
 			details.website,
+			details.opening_hours.weekday_text[0],
+			details.opening_hours.weekday_text[1],
+			details.opening_hours.weekday_text[2],
+			details.opening_hours.weekday_text[3],
+			details.opening_hours.weekday_text[4],
+			details.opening_hours.weekday_text[5],
+			details.opening_hours.weekday_text[6],
 			details.rating,
 			details.formatted_phone_number].join("<br />"));
 		  infowindow.open(map, marker);
