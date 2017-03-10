@@ -1,9 +1,6 @@
 var map;
-var infowindow;
-var service;
 var userPosition;
-var idCounter = 0;
-var listArray = new Array();
+var infowindow;
 
 /*
 * Funktion som initiera Google Maps kartan och tar redan
@@ -14,18 +11,14 @@ function initMap() {
 	  center: {lat: 55.5916628, lng: 12.9875187},
 	  zoom: 12
 	});
-	service = new google.maps.places.PlacesService(map);
+	
 	infowindow = new google.maps.InfoWindow();
-}
-
-$( "#searchBtn" ).click(function() {
 	if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
-	} else {
+    } else {
         //x.innerHTML = "Geolocation is not supported by this browser.";
     }
-	
-});
+}	
 
 
 /*
@@ -51,14 +44,13 @@ function showPosition(position) {
 * Funktion som gör sökningen av närliggande resturanger från användarens * position
 */
 function makeSearch(userPosition){
-	var request = {
-		location: userPosition,
-	  	radius: 500,
-	  	type: ['restaurant']
-	}
-	service.nearbySearch(request, callback);
+	var service = new google.maps.places.PlacesService(map);
+	service.nearbySearch ({
+	  location: userPosition,
+	  radius: 500,
+	  type: ['restaurant']
+	}, callback);
 }
-
 
 /*
 * Funktion som tar emot närliggande resturanger ifrån APIn
@@ -66,25 +58,10 @@ function makeSearch(userPosition){
 function callback(results, status) {
 	if (status === google.maps.places.PlacesServiceStatus.OK) {
 		for (var i = 0; i < results.length; i++) {
-			//createMarker(results[i]);
-			$(".test").append('<h1 class="selectedH1" id='+idCounter+'>' + results[i].name + '</h1>');
-			listArray.push(results[i]);
-			idCounter++;
-		}
+			createMarker(results[i]);
+	  	}
 	}
 }
-
-
-
-$('.test').on('click', '.selectedH1', function(){
-	console.log(this.id);
-	console.log(listArray[this.id]);
-	var currentId = listArray[this.id];
-	createMarker(currentId);
-});
-	
-
-
 
 /*
 * Funktion som sätter ut alla resturanger i kartan och sätter ut en 
@@ -97,46 +74,14 @@ function createMarker(place) {
 	  map: map,
 	  position: place.geometry.location
 	});
-	
-	marker.addListener('click', function(){
-		    var request = {
-                reference: place.reference
-            };
-            service.getDetails(request, function(details, status) {
-
-              infowindow.setContent([
-                details.name,
-                details.formatted_address,
-                details.website,
-                details.rating,
-                details.formatted_phone_number].join("<br />"));
-              infowindow.open(map, marker);
-            });
-	})
-	
 
 	map.setZoom(15);
 	map.panTo(marker.position);
 	google.maps.event.addListener(marker, 'click', function() {
-		infowindow.setContent(place.name);
-		infowindow.open(map, this);
+	  infowindow.setContent(place.name);
+	  infowindow.open(map, this);
 	});
 }
-
-/*
-	console.log("KU");
-		    var service = new google.maps.places.PlacesService(map);	
-	service.getDetails({
-        placeId: place.id
-    }, function (place, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-            // Loop through opening hours weekday text
-            for (var i = 0; i < place.opening_hours.weekday_text.length; i++) {
-                console.log(lace.opening_hours.weekday_text[i]);
-       
-            }
-        }
-    });
 	
 	
 	var photos = place.photos;
