@@ -62,7 +62,7 @@
             <h3>Finds restaurants near you</h3>
             <br>
             <input class="btn ourBtn" placeholder="Write here..."></input>
-            <button class="btn ourBtn">Get my location</button>
+            <button id="getLocationBtn" class="btn ourBtn">Get my location</button>
         <br>
             <button id="searchBtn" class="btn btn-dark btn-lg">Sök</button>
         </div>
@@ -72,7 +72,11 @@
 
 
     <!-- Restauranger -->
-
+	<section>
+		<div id="resultFromAPI"></div>
+	</section>
+	
+	
     <!-- Portfolio -->
     <section id="portfolio" class="portfolio">
         <div class="container">
@@ -107,6 +111,7 @@
           <div id="map"></div>
         </small>
     </section>
+	
 
     <!-- Footer -->
     <footer id="footer">
