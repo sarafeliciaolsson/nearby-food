@@ -61,8 +61,8 @@
             <h1>Nearby Food</h1>
             <h3>Finds restaurants near you</h3>
             <br>
-            <button id="findLocationBtn" class="btn ourBtn" onclick="showSearch()">Find my location</button>
-            <button id="getLocationBtn" class="btn ourBtn">Get my location</button>
+            <button id="findLocationBtn" class="btn ourBtn blackText" onclick="showSearch()">Search for location</button>
+            <button id="getLocationBtn" class="btn ourBtn blackText">Get my location</button>
         <br>
             <button id="searchBtn" class="btn btn-dark btn-lg">Sök</button>
         </div>
@@ -111,20 +111,20 @@
           <div class="pac-card visHide" id="pac-card">
   <div>
     <div id="title">
-      Autocomplete search
+      Search
     </div>
     <div id="type-selector" class="pac-controls">
       <input type="radio" name="type" id="changetype-all" checked="checked">
       <label for="changetype-all">All</label>
 
       <input type="radio" name="type" id="changetype-establishment">
-      <label for="changetype-establishment">Establishments</label>
+      <label for="changetype-establishment">Resturanger</label>
 
       <input type="radio" name="type" id="changetype-address">
-      <label for="changetype-address">Addresses</label>
+      <label for="changetype-address">Adresser</label>
 
       <input type="radio" name="type" id="changetype-geocode">
-      <label for="changetype-geocode">Geocodes</label>
+      <label for="changetype-geocode">Koordinater</label>
     </div>
     <div id="strict-bounds-selector" class="pac-controls">
       <input type="checkbox" id="use-strict-bounds" value="">
