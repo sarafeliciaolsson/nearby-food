@@ -123,6 +123,8 @@ $("#getLocationBtn").click(function() {
 * Funktion som triggas när man klickar på sök knappen
 */
 $("#searchBtn").click(function() {
+	var pacCard = document.querySelector("#map");
+	pacCard.className = "visShow";
 	if(userPosition != null){
 		makeSearch(userPosition);
 	}else if(userPosition == null){
