@@ -215,8 +215,8 @@ function createMarker(place) {
 			reference: place.reference
 		};
 		service.getDetails(request, function(details, status) {
-
-		  infowindow.setContent([
+			console.log(details)
+			infowindow.setContent([
 			details.name,
 			details.formatted_address,
 			details.website,
