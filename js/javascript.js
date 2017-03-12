@@ -136,6 +136,13 @@ $("#searchBtn").click(function() {
 });
 
 
+function showSearch(){
+    var pacCard = document.querySelector("#pac-card");
+    pacCard.className = "pac-card visShow";
+}
+
+
+
 
 /*
 * Funktion som gör sökningen av närliggande resturanger från användarens position

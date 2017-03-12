@@ -65,6 +65,14 @@
 
 }
 
+.visHide{
+  visibility: hidden;
+}
+
+.visShow{
+  visibility: visible;
+}
+
 
 /* Always set the map height explicitly to define the size of the div
  * element that contains the map. */

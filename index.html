@@ -61,7 +61,7 @@
             <h1>Nearby Food</h1>
             <h3>Finds restaurants near you</h3>
             <br>
-            <input class="btn ourBtn" placeholder="Write here..."></input>
+            <button id="findLocationBtn" class="btn ourBtn" onclick="showSearch()">Find my location</button>
             <button id="getLocationBtn" class="btn ourBtn">Get my location</button>
         <br>
             <button id="searchBtn" class="btn btn-dark btn-lg">Sök</button>
@@ -108,7 +108,7 @@
     <section id="contact" class="map">
         <br>
         <small>
-          <div class="pac-card" id="pac-card">
+          <div class="pac-card visHide" id="pac-card">
   <div>
     <div id="title">
       Autocomplete search
