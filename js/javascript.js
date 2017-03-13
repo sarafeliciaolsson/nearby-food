@@ -158,6 +158,7 @@ function makeSearch(userPosition){
 	  	type: ['restaurant']
 	}
 	service.nearbySearch(request, callback);
+	document.getElementById('getLocationBtn').innerHTML= "Got it ✓";
 }
 
 /*
