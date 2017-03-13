@@ -4,7 +4,6 @@ var service;
 var userPosition;
 var idCounter = 0;
 var listArray = new Array();
-show()
 /*
 * Funktion som initiera Google Maps kartan och tar redan
 */
@@ -263,8 +262,8 @@ function show(){
         restaurantSection.className = "show";
         mapSection.className = "show";
         footerSection.className = "show";
-
-    }
+				searchBtn.removeEventListener("click", show);
+			  }
 }
 
 

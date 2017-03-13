@@ -61,7 +61,9 @@
             <h1>Nearby Food</h1>
             <h3>Finds restaurants near you</h3>
             <br>
-            <button id="findLocationBtn" class="btn ourBtn blackText" onclick="showSearch()">Search for location</button>
+
+              <input id="pac-input" class="btn ourBtn" type="text"
+                  placeholder="Write here...">
             <button id="getLocationBtn" class="btn ourBtn blackText">Get my location</button>
         <br>
             <button id="searchBtn" class="btn btn-dark btn-lg">Sök</button>
@@ -80,7 +82,7 @@
     <!-- Portfolio -->
     <section id="portfolio" class="portfolio">
         <div class="container">
-            <div class="row">
+            <div class="row visHide hide">
                 <div class="col-lg-10 col-lg-offset-1 text-center">
                     <h2>Restaurants</h2>
                     <hr class="small">
@@ -131,10 +133,7 @@
       <label for="use-strict-bounds">Strict Bounds</label>
     </div>
   </div>
-  <div id="pac-container">
-    <input id="pac-input" type="text"
-        placeholder="Enter a location">
-  </div>
+
 </div>
 <div id="map" class="visHide"></div>
 <div id="infowindow-content">
