@@ -3,8 +3,9 @@ var infowindow;
 var service;
 var userPosition;
 var idCounter = 0;
+var idCounterTwo = 0;
 var listArray = new Array();
-
+var listTwoArray = new Array();
 /*
 * Funktion som initiera Google Maps kartan och tar redan
 */
@@ -108,7 +109,8 @@ $("#getLocationBtn").click(function() {
 			clearTimeout(location_timeout);
 			userPosition = {lat:position.coords.latitude, lng: position.coords.longitude};
 			console.log(userPosition);
-			makeSearch(userPosition)
+            document.getElementById('getLocationBtn').innerHTML= "Got it ✓";
+			
 		},function(error) {
         	clearTimeout(location_timeout);
         	geolocFail();
@@ -158,7 +160,7 @@ function makeSearch(userPosition){
 	  	type: ['restaurant']
 	}
 	service.nearbySearch(request, callback);
-	document.getElementById('getLocationBtn').innerHTML= "Got it ✓";
+	
 }
 
 /*
@@ -167,13 +169,19 @@ function makeSearch(userPosition){
 function callback(results, status) {
 	console.log(status)
 	console.log(results)
+    $("resultsFromAPI").text(" ");
 	if (status === google.maps.places.PlacesServiceStatus.OK) {
 		for (var i = 0; i < results.length; i++) {
-			//createMarker(results[i]);
-			$("#resultFromAPI").append('<h1 class="selectedRestaurang" id='+idCounter+'>' + results[i].name + '</h1>');
+			if (i <= 9) {
+			$("#resultFromAPI").append('<a class="selectedRestaurang" id='+idCounter+'>' + results[i].name + '</a>');
 			listArray.push(results[i]);
 			idCounter++;
-		}
+            } else {
+                $("#resultTwoFromAPI").append('<a class="selectedRestaurang" id='+idCounterTwo+'>' + results[i].name + '</a>');
+                listTwoArray.push(results[i]);
+                idCounterTwo++;
+            }
+        }
 
 		createUserMarker();
 	}
@@ -204,6 +212,12 @@ $('#resultFromAPI').on('click', '.selectedRestaurang', function(){
 	console.log(this.id);
 	console.log(listArray[this.id]);
 	var currentId = listArray[this.id];
+	createMarker(currentId);
+});
+$('#resultTwoFromAPI').on('click', '.selectedRestaurang', function(){
+	console.log(this.id);
+	console.log(listTwoArray[this.id]);
+	var currentId = listTwoArray[this.id];
 	createMarker(currentId);
 });
 
