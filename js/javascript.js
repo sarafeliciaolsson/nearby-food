@@ -103,7 +103,7 @@ function initMap() {
 $("#getLocationBtn").click(function() {
 	var location_timeout = setTimeout("geolocFail()", 10000);
 
-	document.getElementById('getLocationBtn').innerHTML= "Loading ...  <span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
+	document.getElementById('getLocationBtn').innerHTML= "Loading...  <span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
 	if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position){
 			clearTimeout(location_timeout);
@@ -155,7 +155,7 @@ function makeSearch(userPosition){
 	console.log(userPosition)
 	var request = {
 		location: userPos,
-	  	radius: 5000,
+	  	radius: 1000,
 	  	type: ['restaurant']
 	}
 	service.nearbySearch(request, callback);
