@@ -103,6 +103,7 @@ function initMap() {
 $("#getLocationBtn").click(function() {
 	var location_timeout = setTimeout("geolocFail()", 10000);
 
+	document.getElementById('getLocationBtn').innerHTML= "Loading ...  <span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
 	if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position){
 			clearTimeout(location_timeout);
