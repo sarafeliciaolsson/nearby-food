@@ -63,6 +63,7 @@ function initMap() {
 
 		var address = '';
 		if (place.address_components) {
+			console.log(place)
 			address = [
 				(place.address_components[0] && place.address_components[0].short_name || ''),
 				(place.address_components[1] && place.address_components[1].short_name || ''),
@@ -111,7 +112,7 @@ $("#getLocationBtn").click(function() {
 			userPosition = {lat:position.coords.latitude, lng: position.coords.longitude};
 			console.log(userPosition);
             document.getElementById('getLocationBtn').innerHTML= "Got it ✓";
-			
+
 		},function(error) {
         	clearTimeout(location_timeout);
         	geolocFail();
@@ -161,7 +162,7 @@ function makeSearch(userPosition){
 	  	type: ['restaurant']
 	}
 	service.nearbySearch(request, callback);
-	
+
 }
 
 /*
