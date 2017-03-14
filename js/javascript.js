@@ -171,6 +171,8 @@ function callback(results, status) {
 		for (var i = 0; i < results.length; i++) {
 			//createMarker(results[i]);
 			$("#resultFromAPI").append('<h1 class="selectedRestaurang" id='+idCounter+'>' + results[i].name + '</h1>');
+			var restaurantSection = document.querySelector("#portfolio");
+	    restaurantSection.className = "show";
 			listArray.push(results[i]);
 			idCounter++;
 		}
@@ -255,14 +257,14 @@ searchBtn.addEventListener("click", show);
 
 function show(){
     var menuSection = document.querySelector(".menu");
-    var restaurantSection = document.querySelector("#portfolio");
+
     var mapSection = document.querySelector("#contact");
     var footerSection = document.querySelector("#footer");
 		var map = document.querySelector("#map")
 
 
     menuSection.className = "visShow";
-    restaurantSection.className = "show";
+
     mapSection.className = "show";
     footerSection.className = "show";
 		map.className ="show"
