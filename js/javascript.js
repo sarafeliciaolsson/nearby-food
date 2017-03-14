@@ -218,6 +218,7 @@ $('#resultFromAPI').on('click', '.selectedRestaurang', function(){
 
 function createMarker(place) {
 	var los = place.geometry.location;
+	var infowindow = new google.maps.InfoWindow({ map: map });
 	var marker = new google.maps.Marker({
 	  map: map,
 	  position: place.geometry.location
@@ -278,30 +279,3 @@ function show(){
 });
 
 }
-
-
-// ------ SKRIVA UT RESTAURANGER --------
-
-
-/*$("#title").on("keyup", function(){
-
-
-
-	$("#title").show();
-	$.ajax({
-		url: "http://www.omdbapi.com/?s=" + UserInput + "&y=&plot=short&r=json",
-		dataType: "JSON"
-    }).done(function(data){
-        $("#presentRestaurants").html("");
-
-        try{
-            var restaurants = data.Search;   //lista av alla restauranger
-            console.log(restaurants);
-
-        for(var i = 0; i < restaurants.length; i++) {
-            var name = restaurants[i].Name;   //Varje restaurang
-
-            $("#presentRestaurants").append("<h2>" + place.Name + "</h2>");
-        });
-
-*/
