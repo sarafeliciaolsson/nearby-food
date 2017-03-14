@@ -4,6 +4,7 @@ var service;
 var userPosition;
 var idCounter = 0;
 var listArray = new Array();
+
 /*
 * Funktion som initiera Google Maps kartan och tar redan
 */
@@ -157,6 +158,7 @@ function makeSearch(userPosition){
 	  	type: ['restaurant']
 	}
 	service.nearbySearch(request, callback);
+	document.getElementById('getLocationBtn').innerHTML= "Got it ✓";
 }
 
 /*
@@ -256,14 +258,22 @@ function show(){
     var restaurantSection = document.querySelector("#portfolio");
     var mapSection = document.querySelector("#contact");
     var footerSection = document.querySelector("#footer");
+		var map = document.querySelector("#map")
 
-    if(menuSection.className && restaurantSection.className && mapSection.className && footerSection.className !== "hide"){
-        menuSection.className = "show";
-        restaurantSection.className = "show";
-        mapSection.className = "show";
-        footerSection.className = "show";
-				searchBtn.removeEventListener("click", show);
-			  }
+
+    menuSection.className = "visShow";
+    restaurantSection.className = "show";
+    mapSection.className = "show";
+    footerSection.className = "show";
+		map.className ="show"
+
+		$(document).ready(function() {
+    $(window).resize(function() {
+        google.maps.event.trigger(map, 'resize');
+    });
+    google.maps.event.trigger(map, 'resize');
+});
+
 }
 
 
