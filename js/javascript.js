@@ -104,6 +104,7 @@ function initMap() {
 $("#getLocationBtn").click(function() {
 	var location_timeout = setTimeout("geolocFail()", 10000);
 
+	document.getElementById('getLocationBtn').innerHTML= "Loading...  <span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
 	if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position){
 			clearTimeout(location_timeout);
@@ -156,7 +157,7 @@ function makeSearch(userPosition){
 	console.log(userPosition)
 	var request = {
 		location: userPos,
-	  	radius: 5000,
+	  	radius: 1000,
 	  	type: ['restaurant']
 	}
 	service.nearbySearch(request, callback);
@@ -174,6 +175,8 @@ function callback(results, status) {
 		for (var i = 0; i < results.length; i++) {
 			if (i <= 9) {
 			$("#resultFromAPI").append('<a class="selectedRestaurang" id='+idCounter+'>' + results[i].name + '</a>');
+			var restaurantSection = document.querySelector("#portfolio");
+	       restaurantSection.className = "show";
 			listArray.push(results[i]);
 			idCounter++;
             } else {
@@ -229,6 +232,7 @@ $('#resultTwoFromAPI').on('click', '.selectedRestaurang', function(){
 
 function createMarker(place) {
 	var los = place.geometry.location;
+	var infowindow = new google.maps.InfoWindow({ map: map });
 	var marker = new google.maps.Marker({
 	  map: map,
 	  position: place.geometry.location
@@ -269,14 +273,14 @@ searchBtn.addEventListener("click", show);
 
 function show(){
     var menuSection = document.querySelector(".menu");
-    var restaurantSection = document.querySelector("#portfolio");
+
     var mapSection = document.querySelector("#contact");
     var footerSection = document.querySelector("#footer");
 		var map = document.querySelector("#map")
 
 
     menuSection.className = "visShow";
-    restaurantSection.className = "show";
+
     mapSection.className = "show";
     footerSection.className = "show";
 		map.className ="show"
@@ -289,30 +293,3 @@ function show(){
 });
 
 }
-
-
-// ------ SKRIVA UT RESTAURANGER --------
-
-
-/*$("#title").on("keyup", function(){
-
-
-
-	$("#title").show();
-	$.ajax({
-		url: "http://www.omdbapi.com/?s=" + UserInput + "&y=&plot=short&r=json",
-		dataType: "JSON"
-    }).done(function(data){
-        $("#presentRestaurants").html("");
-
-        try{
-            var restaurants = data.Search;   //lista av alla restauranger
-            console.log(restaurants);
-
-        for(var i = 0; i < restaurants.length; i++) {
-            var name = restaurants[i].Name;   //Varje restaurang
-
-            $("#presentRestaurants").append("<h2>" + place.Name + "</h2>");
-        });
-
-*/
