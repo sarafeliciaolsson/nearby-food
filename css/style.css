@@ -207,6 +207,23 @@ html, body {
     #restaurantHeader {
         font-size: 40px;
     }
+    
+    .selectedRestaurang {
+        font-size: 18px;
+    }
+
+        
+    hr.small {
+        margin-bottom: 50px;
+    }
+    
+    
+    #topBtn {
+        margin-top: 100px;
+        margin-bottom: 30px;
+    }
+    
+
 }
 
 
@@ -215,7 +232,7 @@ html, body {
 @media screen and (min-width: 1025px){
     #restaurantHeader {
         font-size: 50px;
-        margin-top: 100px;
+        margin: 60px;
     }
     
     #resultTwoFromAPI {
