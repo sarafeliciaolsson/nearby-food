@@ -61,38 +61,35 @@
             <h1>Nearby Food</h1>
             <h3>Finds restaurants near you</h3>
             <br>
-            <input class="btn ourBtn" placeholder="Write here..."></input>
-            <button id="getLocationBtn" class="btn ourBtn">Get my location</button>
+
+              <input id="pac-input" class="btn ourBtn" type="text"
+                  placeholder="Write adress here...">
+            <button id="getLocationBtn" class="btn ourBtn blackText">Get my location</button>
         <br>
             <button id="searchBtn" class="btn btn-dark btn-lg">Sök</button>
         </div>
     </header>
 
 
-
-
-    <!-- Restauranger -->
-	<section>
-		<div id="resultFromAPI"></div>
-	</section>
-	
-	
     <!-- Portfolio -->
     <section id="portfolio" class="portfolio">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h2>Restaurants</h2>
+                    <h2 id="restaurantHeader">Restaurants</h2>
                     <hr class="small">
                     <div class="row">
-                        <div class="col-sm-12">
-                            <div id="presentRestaurants" class="portfolio-item">
-                                <h2>hej</h2>
-                            </div>
+                        <div class="col-sm-6 col-sm-offset-1">
+                            
+                                <div id="resultFromAPI"></div>
+                            
+                        </div>
+                        <div class="col-sm-5">
+                            <div id="resultTwoFromAPI"></div>
                         </div>
                     </div>
                     <!-- /.row (nested) -->
-                    <a href="#" class="btn btn-dark">Go to top</a>
+                    <a href="#" id="topBtn" class="btn btn-dark">Go to top</a>
                 </div>
                 <!-- /.col-lg-10 -->
             </div>
@@ -105,13 +102,43 @@
 
 
     <!-- Map -->
-    <section id="contact" class="map">
+    <section id="contact" class="hide">
         <br>
         <small>
-          <div id="map"></div>
+          <div class="pac-card visHide" id="pac-card">
+  <div>
+    <div id="title">
+      Search
+    </div>
+    <div id="type-selector" class="pac-controls">
+      <input type="radio" name="type" id="changetype-all" checked="checked">
+      <label for="changetype-all">All</label>
+
+      <input type="radio" name="type" id="changetype-establishment">
+      <label for="changetype-establishment">Resturanger</label>
+
+      <input type="radio" name="type" id="changetype-address">
+      <label for="changetype-address">Adresser</label>
+
+      <input type="radio" name="type" id="changetype-geocode">
+      <label for="changetype-geocode">Koordinater</label>
+    </div>
+    <div id="strict-bounds-selector" class="pac-controls">
+      <input type="checkbox" id="use-strict-bounds" value="">
+      <label for="use-strict-bounds">Strict Bounds</label>
+    </div>
+  </div>
+
+</div>
+<div id="map" class="hide"></div>
+<div id="infowindow-content">
+  <img src="" width="16" height="16" id="place-icon">
+  <span id="place-name"  class="title"></span><br>
+  <span id="place-address"></span>
+</div>
         </small>
     </section>
-	
+
 
     <!-- Footer -->
     <footer id="footer">
@@ -135,7 +162,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/javascript.js"></script>
 	 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDDNWX9y9wRPUKzE_7uCHQroTO272PqCc&libraries=places&callback=initMap" async defer></script>
-	
+
 
     <!-- Custom Theme JavaScript -->
     <script>

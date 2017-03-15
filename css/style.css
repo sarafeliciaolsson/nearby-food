@@ -2,10 +2,24 @@
         height: 100%;
       }
 
+.glyphicon-refresh-animate {
+  -animation: spin 1.5s infinite linear;
+  -webkit-animation: spin2 1.5s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
 
 .text-vertical-center {
     color: white;
-    
+
 }
 
 .text-vertical-center h1, h3 {
@@ -14,26 +28,29 @@
         -1px -1px 0 #000,
         1px -1px 0 #000,
         -1px 1px 0 #000,
-        1px 1px 0 #000;  
+        1px 1px 0 #000;
 }
 
 .ourBtn {
     margin: 2%;
     width: 200px;
+    color: black;
+    background-color: white;
 }
 
 .menu {
-    display: none;    
+    display: none;
 }
 
 #menuPlacement {
     position: absolute;
-    
+
 }
 
 #portfolio {
     display: none;
-    height: 100%;
+    height: auto;
+    clear: both;
 }
 
 .portfolio-item {
@@ -41,14 +58,14 @@
     padding-bottom: 100px;
 }
 
-#contact {
-    display: none;
-    height: 75%;
-}
 
 #footer {
     display: none;
+    height: 50px;
+
 }
+
+
 
 .hide{
     display: none;
@@ -60,7 +77,177 @@
 .show{
     display: block;
     opacity: 1;
-    height: auto;
+    height: 75%;
     padding-bottom: 10px;
+
+}
+
+.visHide{
+  visibility: hidden;
+}
+
+.visShow{
+  visibility: visible;
+  overflow: visible;
+
+}
+
+
+.visHideMap{
+  visibility: hidden;
+
+}
+
+.visShowMap{
+  visibility: visible;
+  height: 75%;
+  overflow: visible;
+
+
+
+}
+
+
+/* Always set the map height explicitly to define the size of the div
+ * element that contains the map. */
+#map {
+  height: 100%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+#description {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+#infowindow-content .title {
+  font-weight: bold;
+}
+
+#infowindow-content {
+  display: none;
+}
+
+#map #infowindow-content {
+  display: inline;
+}
+
+.pac-card {
+  margin: 10px 10px 0 0;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  font-family: Roboto;
+}
+
+
+.pac-controls {
+  display: inline-block;
+  padding: 5px 11px;
+}
+
+.pac-controls label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+
+#title {
+  color: #fff;
+  background-color: #4d90fe;
+  font-size: 25px;
+  font-weight: 500;
+  padding: 6px 12px;
+}
+
+
+.selectedRestaurang {
+    font-size: 20px;
+    float: left;
+    clear: both;
+    text-decoration: none !important;
+    color: black;
+    padding-bottom: 10px;
+}
+
+.selectedRestaurang:hover {
+    color: darkgrey !important;
+}
+
+
+
+
+
+
+
+/* ----------- MOBILVERSION ------------ */
+@media screen and (max-width:480px){
+    .selectedRestaurang {
+        font-size: 15px;
+    }
+
+    #topBtn {
+        margin-top: 30px !important;
+    }
+
+}
+
+
+/* ----------- PLATTVERSION ------------ */
+@media screen and (min-width: 480px) and (max-width: 1024px){
+    #restaurantHeader {
+        font-size: 40px;
+    }
     
+    .selectedRestaurang {
+        font-size: 18px;
+    }
+
+        
+    hr.small {
+        margin-bottom: 50px;
+    }
+    
+    
+    #topBtn {
+        margin-top: 100px;
+        margin-bottom: 30px;
+    }
+    
+
+}
+
+
+
+/* ----------- DATORVERSION ------------ */
+@media screen and (min-width: 1025px){
+    #restaurantHeader {
+        font-size: 50px;
+        margin: 60px;
+    }
+
+    #resultTwoFromAPI {
+        float: left;
+    }
+
+    #topBtn {
+        margin-top: 100px;
+        margin-bottom: 30px;
+    }
+
+    hr.small {
+        margin-bottom: 50px;
+    }
+
+
+
 }
