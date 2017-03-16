@@ -115,9 +115,11 @@ $("#getLocationBtn").click(function() {
 			clearTimeout(location_timeout);
 			userPosition = {lat:position.coords.latitude, lng: position.coords.longitude};
 			console.log(userPosition);
-            document.getElementById('getLocationBtn').innerHTML= "Got it ✓";
-						var button = document.querySelector("#searchBtn")
-				    button.className = "btn btn-dark btn-lg activated";
+			makeSearch(userPosition);
+      document.getElementById('getLocationBtn').innerHTML= "Got it ✓";
+			var button = document.querySelector("#searchBtn")
+			button.className = "btn btn-dark btn-lg activated";
+
 
 
 
