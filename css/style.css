@@ -180,6 +180,7 @@ html, body {
     text-decoration: none !important;
     color: black;
     padding-bottom: 10px;
+    cursor: pointer; cursor: hand; 
 }
 
 .selectedRestaurang:hover {
