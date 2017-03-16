@@ -16,7 +16,8 @@ var listTwoArray = new Array();
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
 	  center: {lat: 55.5916628, lng: 12.9875187},
-	  zoom: 12
+	  zoom: 12,
+        scrollwheel: false
 	});
 	var card = document.getElementById('pac-card');
 	var input = document.getElementById('pac-input');
