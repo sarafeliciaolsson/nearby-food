@@ -174,7 +174,7 @@ function callback(results, status) {
 			listArray.push(results[i]);
 			idCounter++;
             } else {
-                $("#resultTwoFromAPI").append('<a class="selectedRestaurang" id='+idCounterTwo+'>' + results[i].name + '</a>');
+                $("#resultTwoFromAPI").append('<a href="#map" class="selectedRestaurang" id='+idCounterTwo+'>' + results[i].name + '</a>');
                 listTwoArray.push(results[i]);
                 idCounterTwo++;
             }
@@ -293,6 +293,7 @@ function activateSearch(){
 		var button = document.querySelector("#searchBtn");
 		if (button.classList.contains("activated")){
 			show()
+			$(window).scrollTop($('#portfolio').offset().top);
 		}else{
 			alert("Please choose a option above")
 		}
