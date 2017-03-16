@@ -168,13 +168,13 @@ function callback(results, status) {
 	if (status === google.maps.places.PlacesServiceStatus.OK) {
 		for (var i = 0; i < results.length; i++) {
 			if (i <= 9) {
-			$("#resultFromAPI").append('<a class="selectedRestaurang" id='+idCounter+'>' + results[i].name + '</a>');
+			$("#resultFromAPI").append('<a href="#topBtn" class="selectedRestaurang" id='+idCounter+'>' + results[i].name + '</a>');
 			var restaurantSection = document.querySelector("#portfolio");
-	       restaurantSection.className = "show";
+	    restaurantSection.className = "show";
 			listArray.push(results[i]);
 			idCounter++;
             } else {
-                $("#resultTwoFromAPI").append('<a href="#map" class="selectedRestaurang" id='+idCounterTwo+'>' + results[i].name + '</a>');
+                $("#resultTwoFromAPI").append('<a href="#topBtn" class="selectedRestaurang" id='+idCounterTwo+'>' + results[i].name + '</a>');
                 listTwoArray.push(results[i]);
                 idCounterTwo++;
             }
@@ -293,7 +293,7 @@ function activateSearch(){
 		var button = document.querySelector("#searchBtn");
 		if (button.classList.contains("activated")){
 			show()
-			$(window).scrollTop($('#portfolio').offset().top);
+			$('html, body').animate({scrollTop:805}, 1300);
 		}else{
 			alert("Please choose a option above")
 		}
