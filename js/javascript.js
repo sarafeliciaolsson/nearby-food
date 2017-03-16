@@ -17,7 +17,7 @@ function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
 	  center: {lat: 55.5916628, lng: 12.9875187},
 	  zoom: 12,
-        scrollwheel: false
+      scrollwheel: false
 	});
 	var card = document.getElementById('pac-card');
 	var input = document.getElementById('pac-input');
@@ -160,7 +160,8 @@ function makeSearch(userPosition){
 	var request = {
 		location: userPos,
 	  	radius: 1000,
-	  	type: ['restaurant']
+	  	type: ['restaurant'],
+		opennow: true
 	}
 	service.nearbySearch(request, callback);
 
@@ -257,7 +258,7 @@ function createMarker(place) {
 			details.opening_hours.weekday_text[4],
 			details.opening_hours.weekday_text[5],
 			details.opening_hours.weekday_text[6],
-			details.rating,
+			'Betyg ' + details.rating,
 			details.formatted_phone_number].join("<br />"));
 		  infowindow.open(map, marker);
 		});
