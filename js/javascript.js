@@ -17,7 +17,7 @@ function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
 	  center: {lat: 55.5916628, lng: 12.9875187},
 	  zoom: 12,
-	  scrollwheel:false
+      scrollwheel: false
 	});
 	var card = document.getElementById('pac-card');
 	var input = document.getElementById('pac-input');
@@ -58,6 +58,7 @@ function initMap() {
 		} else {
 			map.setCenter(place.geometry.location);
 			map.setZoom(13);  // Why 17? Because it looks good.
+
 		}
 		marker.setPosition(place.geometry.location);
 		marker.setVisible(true);
@@ -76,6 +77,8 @@ function initMap() {
 		infowindowContent.children['place-name'].textContent = place.name;
 		infowindowContent.children['place-address'].textContent = address;
 		infowindow.open(map, marker);
+		var button = document.querySelector("#searchBtn")
+		button.className = "btn btn-dark btn-lg activated";
 	});
 
 	// Sets a listener on a radio button to change the filter type on Places
@@ -112,7 +115,13 @@ $("#getLocationBtn").click(function() {
 			clearTimeout(location_timeout);
 			userPosition = {lat:position.coords.latitude, lng: position.coords.longitude};
 			console.log(userPosition);
-            document.getElementById('getLocationBtn').innerHTML= "Got it ✓";
+			makeSearch(userPosition);
+      document.getElementById('getLocationBtn').innerHTML= "Got it ✓";
+			var button = document.querySelector("#searchBtn")
+			button.className = "btn btn-dark btn-lg activated";
+
+
+
 
 		},function(error) {
         	clearTimeout(location_timeout);
@@ -123,24 +132,6 @@ $("#getLocationBtn").click(function() {
     }
 });
 
-
-/*
-* Funktion som triggas när man klickar på sök knappen
-*/
-$("#searchBtn").click(function() {
-	var pacCard = document.querySelector("#map");
-	pacCard.className = "visShow";
-	if(userPosition != null){
-		makeSearch(userPosition);
-	}else if(userPosition == null){
-		alert("Tryck på knappen Get location och tryck sedan på Sök knappen");
-	}
-	/*
-	else if(INGEN ADRESS){
-		alert(Skriv in en adress);
-	}
-	*/
-});
 
 
 function showSearch(){
@@ -177,13 +168,13 @@ function callback(results, status) {
 	if (status === google.maps.places.PlacesServiceStatus.OK) {
 		for (var i = 0; i < results.length; i++) {
 			if (i <= 9) {
-			$("#resultFromAPI").append('<a class="selectedRestaurang" id='+idCounter+'>' + results[i].name + '</a>');
+			$("#resultFromAPI").append('<a href="#topBtn" class="selectedRestaurang" id='+idCounter+'>' + results[i].name + '</a>');
 			var restaurantSection = document.querySelector("#portfolio");
-	       restaurantSection.className = "show";
+	    restaurantSection.className = "show";
 			listArray.push(results[i]);
 			idCounter++;
             } else {
-                $("#resultTwoFromAPI").append('<a class="selectedRestaurang" id='+idCounterTwo+'>' + results[i].name + '</a>');
+                $("#resultTwoFromAPI").append('<a href="#topBtn" class="selectedRestaurang" id='+idCounterTwo+'>' + results[i].name + '</a>');
                 listTwoArray.push(results[i]);
                 idCounterTwo++;
             }
@@ -270,20 +261,19 @@ function createMarker(place) {
 
 // ----- DÖLJER ALLT UTOM FÖRSTASIDAN I FÖRSTA LÄGET & VISAR ALLT NÄR MAN TRYCKER PÅ SÖK -----
 
-var searchBtn = document.querySelector("#searchBtn");
-searchBtn.addEventListener("click", show);
+
 
 
 function show(){
     var menuSection = document.querySelector(".menu");
-
+		var portfolio = document.querySelector("#portfolio");
     var mapSection = document.querySelector("#contact");
     var footerSection = document.querySelector("#footer");
 		var map = document.querySelector("#map")
 
 
     menuSection.className = "visShow";
-
+		portfolio.className = "show"
     mapSection.className = "show";
     footerSection.className = "show";
 		map.className ="show"
@@ -294,5 +284,19 @@ function show(){
     });
     google.maps.event.trigger(map, 'resize');
 });
+
+}
+
+
+
+function activateSearch(){
+		var button = document.querySelector("#searchBtn");
+		if (button.classList.contains("activated")){
+			show()
+			$('html, body').animate({scrollTop:805}, 1300);
+		}else{
+			alert("Please choose a option above")
+		}
+
 
 }

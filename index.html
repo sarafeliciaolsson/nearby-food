@@ -21,6 +21,8 @@
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -49,7 +51,7 @@
                 <a href="#portfolio" onclick=$("#menu-close").click();>Restauranger</a>
             </li>
             <li>
-                <a href="#contact" onclick=$("#menu-close").click();>Karta</a>
+                <a href="#topBtn" onclick=$("#menu-close").click();>Karta</a>
             </li>
         </ul>
     </nav>
@@ -62,11 +64,13 @@
             <h3>Finds restaurants near you</h3>
             <br>
 
-              <input id="pac-input" class="btn ourBtn" type="text"
-                  placeholder="Write adress here...">
+              <input id="pac-input" class="btn ourBtn" type="text" placeholder="Write adress here...">
+
+
+
             <button id="getLocationBtn" class="btn ourBtn blackText">Get my location</button>
         <br>
-            <button id="searchBtn" class="btn btn-dark btn-lg">Sök</button>
+            <button id="searchBtn" class="btn btn-dark btn-lg" onclick="activateSearch()">Sök</button>
         </div>
     </header>
 
@@ -80,9 +84,9 @@
                     <hr class="small">
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-1">
-                            
+
                                 <div id="resultFromAPI"></div>
-                            
+
                         </div>
                         <div class="col-sm-5">
                             <div id="resultTwoFromAPI"></div>
@@ -157,6 +161,7 @@
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
+    <script src="js/script.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
@@ -164,79 +169,9 @@
 	 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDDNWX9y9wRPUKzE_7uCHQroTO272PqCc&libraries=places&callback=initMap" async defer></script>
 
 
-    <!-- Custom Theme JavaScript -->
-    <script>
-    // Closes the sidebar menu
-    $("#menu-close").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-    // Opens the sidebar menu
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-    // Scrolls to the selected menu item on the page
-    $(function() {
-        $('a[href*=#]:not([href=#],[data-toggle],[data-target],[data-slide])').click(function() {
-            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
-                var target = $(this.hash);
-                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                if (target.length) {
-                    $('html,body').animate({
-                        scrollTop: target.offset().top
-                    }, 1000);
-                    return false;
-                }
-            }
-        });
-    });
-    //#to-top button appears after scrolling
-    var fixed = false;
-    $(document).scroll(function() {
-        if ($(this).scrollTop() > 250) {
-            if (!fixed) {
-                fixed = true;
-                // $('#to-top').css({position:'fixed', display:'block'});
-                $('#to-top').show("slow", function() {
-                    $('#to-top').css({
-                        position: 'fixed',
-                        display: 'block'
-                    });
-                });
-            }
-        } else {
-            if (fixed) {
-                fixed = false;
-                $('#to-top').hide("slow", function() {
-                    $('#to-top').css({
-                        display: 'none'
-                    });
-                });
-            }
-        }
-    });
-    // Disable Google Maps scrolling
-    // See http://stackoverflow.com/a/25904582/1607849
-    // Disable scroll zooming and bind back the click event
-    var onMapMouseleaveHandler = function(event) {
-        var that = $(this);
-        that.on('click', onMapClickHandler);
-        that.off('mouseleave', onMapMouseleaveHandler);
-        that.find('iframe').css("pointer-events", "none");
-    }
-    var onMapClickHandler = function(event) {
-            var that = $(this);
-            // Disable the click handler until the user leaves the map area
-            that.off('click', onMapClickHandler);
-            // Enable scrolling zoom
-            that.find('iframe').css("pointer-events", "auto");
-            // Handle the mouse leave event
-            that.on('mouseleave', onMapMouseleaveHandler);
-        }
-        // Enable map zooming with mouse scroll when the user clicks the map
-    $('.map').on('click', onMapClickHandler);
-    </script>
+
+
+
 
 </body>
 
