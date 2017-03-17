@@ -64,13 +64,13 @@
             <h3>Finds restaurants near you</h3>
             <br>
 
-              <input id="pac-input" class="btn ourBtn" type="text" placeholder="Write adress here...">
-
+              <input id="pac-input" class="btn ourBtn controls" type="text" placeholder="Write adress here...">
+		
 
 
             <button id="getLocationBtn" class="btn ourBtn blackText">Get my location</button>
         <br>
-            <button id="searchBtn" class="btn btn-dark btn-lg" onclick="activateSearch()">Sök</button>
+            <button id="searchBtn" class="btn btn-dark btn-lg" >Sök</button>
         </div>
     </header>
 
@@ -107,40 +107,7 @@
 
     <!-- Map -->
     <section id="contact" class="hide">
-        <br>
-        <small>
-          <div class="pac-card visHide" id="pac-card">
-  <div>
-    <div id="title">
-      Search
-    </div>
-    <div id="type-selector" class="pac-controls">
-      <input type="radio" name="type" id="changetype-all" checked="checked">
-      <label for="changetype-all">All</label>
-
-      <input type="radio" name="type" id="changetype-establishment">
-      <label for="changetype-establishment">Resturanger</label>
-
-      <input type="radio" name="type" id="changetype-address">
-      <label for="changetype-address">Adresser</label>
-
-      <input type="radio" name="type" id="changetype-geocode">
-      <label for="changetype-geocode">Koordinater</label>
-    </div>
-    <div id="strict-bounds-selector" class="pac-controls">
-      <input type="checkbox" id="use-strict-bounds" value="">
-      <label for="use-strict-bounds">Strict Bounds</label>
-    </div>
-  </div>
-
-</div>
-<div id="map" class="hide"></div>
-<div id="infowindow-content">
-  <img src="" width="16" height="16" id="place-icon">
-  <span id="place-name"  class="title"></span><br>
-  <span id="place-address"></span>
-</div>
-        </small>
+		<div id="map"></div>
     </section>
 
 

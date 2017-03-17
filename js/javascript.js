@@ -6,6 +6,8 @@ var idCounter = 0;
 var idCounterTwo = 0;
 var listArray = new Array();
 var listTwoArray = new Array();
+var searchBox;
+var isGetLocationChecked = false;
 /*
 * Funktion som initiera Google Maps kartan och tar redan
 */
@@ -19,87 +21,23 @@ function initMap() {
 	  zoom: 12,
       scrollwheel: false
 	});
-	var card = document.getElementById('pac-card');
-	var input = document.getElementById('pac-input');
-	var types = document.getElementById('type-selector');
-	var strictBounds = document.getElementById('strict-bounds-selector');
-
-	map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
-
-	var autocomplete = new google.maps.places.Autocomplete(input);
-
-	// Bind the map's bounds (viewport) property to the autocomplete object,
-	// so that the autocomplete requests use the current map bounds for the
-	// bounds option in the request.
-	autocomplete.bindTo('bounds', map);
+	
 	service = new google.maps.places.PlacesService(map);
-	var infowindow = new google.maps.InfoWindow();
-	var infowindowContent = document.getElementById('infowindow-content');
-	infowindow.setContent(infowindowContent);
-	var marker = new google.maps.Marker({
-		map: map,
-		anchorPoint: new google.maps.Point(0, -29)
-	});
+	infowindow = new google.maps.InfoWindow();
+	changeOtherThings();
+}
 
-	autocomplete.addListener('place_changed', function() {
-		infowindow.close();
-		marker.setVisible(false);
-		var place = autocomplete.getPlace();
-		if (!place.geometry) {
-			// User entered the name of a Place that was not suggested and
-			// pressed the Enter key, or the Place Details request failed.
-			window.alert("No details available for input: '" + place.name + "'");
-			return;
-		}
+function changeOtherThings(){
+// Create the search box and link it to the UI element.
+  var input = document.getElementById('pac-input');
+  searchBox = new google.maps.places.Autocomplete(input);
 
-		// If the place has a geometry, then present it on a map.
-		if (place.geometry.viewport) {
-			map.fitBounds(place.geometry.viewport);
-		} else {
-			map.setCenter(place.geometry.location);
-			map.setZoom(13);  // Why 17? Because it looks good.
+  // Bias the SearchBox results towards current map's viewport.
+  map.addListener('bounds_changed', function() {
+    searchBox.setBounds(map.getBounds());
+  });
 
-		}
-		marker.setPosition(place.geometry.location);
-		marker.setVisible(true);
-
-		var address = '';
-		if (place.address_components) {
-			console.log(place)
-			address = [
-				(place.address_components[0] && place.address_components[0].short_name || ''),
-				(place.address_components[1] && place.address_components[1].short_name || ''),
-				(place.address_components[2] && place.address_components[2].short_name || '')
-			].join(' ');
-		}
-
-		infowindowContent.children['place-icon'].src = place.icon;
-		infowindowContent.children['place-name'].textContent = place.name;
-		infowindowContent.children['place-address'].textContent = address;
-		infowindow.open(map, marker);
-		var button = document.querySelector("#searchBtn")
-		button.className = "btn btn-dark btn-lg activated";
-	});
-
-	// Sets a listener on a radio button to change the filter type on Places
-	// Autocomplete.
-	function setupClickListener(id, types) {
-		var radioButton = document.getElementById(id);
-		radioButton.addEventListener('click', function() {
-			autocomplete.setTypes(types);
-		});
-	}
-
-	setupClickListener('changetype-all', []);
-	setupClickListener('changetype-address', ['address']);
-	setupClickListener('changetype-establishment', ['establishment']);
-	setupClickListener('changetype-geocode', ['geocode']);
-
-	document.getElementById('use-strict-bounds')
-			.addEventListener('click', function() {
-				console.log('Checkbox clicked! New state=' + this.checked);
-				autocomplete.setOptions({strictBounds: this.checked});
-			});
+  var markers = [];
 }
 
 /*
@@ -107,6 +45,7 @@ function initMap() {
 * funktionen tar reda på användarens position
 */
 $("#getLocationBtn").click(function() {
+	isGetLocationChecked = true;
 	var location_timeout = setTimeout("geolocFail()", 10000);
 
 	document.getElementById('getLocationBtn').innerHTML= "Loading...  <span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
@@ -119,10 +58,6 @@ $("#getLocationBtn").click(function() {
       document.getElementById('getLocationBtn').innerHTML= "Got it ✓";
 			var button = document.querySelector("#searchBtn")
 			button.className = "btn btn-dark btn-lg activated";
-
-
-
-
 		},function(error) {
         	clearTimeout(location_timeout);
         	geolocFail();
@@ -130,6 +65,28 @@ $("#getLocationBtn").click(function() {
 	} else {
         alert("Geolocation is not supported by this browser.");
     }
+});
+
+$("#searchBtn").click(function(){
+	if(isGetLocationChecked == true){
+		show();
+		$('html, body').animate({
+			scrollTop: $("#portfolio").offset().top
+		}, 2000);
+	}else if(isGetLocationChecked == false && $('#pac-input').val().length != 0){
+		var place = searchBox.getPlace(); 
+		var latitude = place.geometry.location.lat();
+		var longitude = place.geometry.location.lng();
+		var location = {lat: latitude, lng: longitude};
+		makeSearch(location);	
+		show();
+		$('html, body').animate({
+        scrollTop: $("#portfolio").offset().top
+    	}, 2000);
+	}else{
+		alert("Skriv in adress");
+	}
+	
 });
 
 
@@ -210,12 +167,18 @@ $('#resultFromAPI').on('click', '.selectedRestaurang', function(){
 	console.log(listArray[this.id]);
 	var currentId = listArray[this.id];
 	createMarker(currentId);
+	$('html, body').animate({
+        scrollTop: $("#contact").offset().top
+    }, 2000);
 });
 $('#resultTwoFromAPI').on('click', '.selectedRestaurang', function(){
 	console.log(this.id);
 	console.log(listTwoArray[this.id]);
 	var currentId = listTwoArray[this.id];
 	createMarker(currentId);
+	$('html, body').animate({
+        scrollTop: $("#contact").offset().top
+    }, 2000);
 });
 
 /*
@@ -289,14 +252,3 @@ function show(){
 
 
 
-function activateSearch(){
-		var button = document.querySelector("#searchBtn");
-		if (button.classList.contains("activated")){
-			show()
-			$('html, body').animate({scrollTop:805}, 1300);
-		}else{
-			alert("Please choose a option above")
-		}
-
-
-}
