@@ -8,12 +8,10 @@ var listArray = new Array();
 var listTwoArray = new Array();
 var searchBox;
 var isGetLocationChecked = false;
+
 /*
 * Funktion som initiera Google Maps kartan och tar redan
 */
-// This example requires the Places library. Include the libraries=places
-// parameter when you first load the API. For example:
-// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
@@ -24,10 +22,10 @@ function initMap() {
 	
 	service = new google.maps.places.PlacesService(map);
 	infowindow = new google.maps.InfoWindow();
-	changeOtherThings();
+	autoCompleteFunction();
 }
 
-function changeOtherThings(){
+function autoCompleteFunction(){
 // Create the search box and link it to the UI element.
   var input = document.getElementById('pac-input');
   searchBox = new google.maps.places.Autocomplete(input);
@@ -37,7 +35,7 @@ function changeOtherThings(){
     searchBox.setBounds(map.getBounds());
   });
 
-  var markers = [];
+  //var markers = [];
 }
 
 /*
@@ -47,15 +45,15 @@ function changeOtherThings(){
 $("#getLocationBtn").click(function() {
 	isGetLocationChecked = true;
 	var location_timeout = setTimeout("geolocFail()", 10000);
-
 	document.getElementById('getLocationBtn').innerHTML= "Loading...  <span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
+	
 	if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position){
 			clearTimeout(location_timeout);
 			userPosition = {lat:position.coords.latitude, lng: position.coords.longitude};
 			console.log(userPosition);
 			makeSearch(userPosition);
-      document.getElementById('getLocationBtn').innerHTML= "Got it ✓";
+      		document.getElementById('getLocationBtn').innerHTML= "Got it ✓";
 			var button = document.querySelector("#searchBtn")
 			button.className = "btn btn-dark btn-lg activated";
 		},function(error) {
@@ -85,8 +83,7 @@ $("#searchBtn").click(function(){
     	}, 2000);
 	}else{
 		alert("Skriv in adress");
-	}
-	
+	}	
 });
 
 
@@ -104,7 +101,7 @@ function showSearch(){
 */
 function makeSearch(userPosition){
 	var userPos = userPosition;
-	console.log(userPosition)
+	console.log(userPosition);
 	var request = {
 		location: userPos,
 	  	radius: 1000,
@@ -119,24 +116,23 @@ function makeSearch(userPosition){
 * Funktion som tar emot närliggande resturanger ifrån APIn
 */
 function callback(results, status) {
-	console.log(status)
-	console.log(results)
+	console.log(status);
+	console.log(results);
     $("resultsFromAPI").text(" ");
 	if (status === google.maps.places.PlacesServiceStatus.OK) {
 		for (var i = 0; i < results.length; i++) {
 			if (i <= 9) {
-			$("#resultFromAPI").append('<a href="#topBtn" class="selectedRestaurang" id='+idCounter+'>' + results[i].name + '</a>');
-			var restaurantSection = document.querySelector("#portfolio");
-	    restaurantSection.className = "show";
-			listArray.push(results[i]);
-			idCounter++;
+				$("#resultFromAPI").append('<a href="#topBtn" class="selectedRestaurang" id='+idCounter+'>' + results[i].name + '</a>');
+				var restaurantSection = document.querySelector("#portfolio");
+				restaurantSection.className = "show";
+				listArray.push(results[i]);
+				idCounter++;
             } else {
                 $("#resultTwoFromAPI").append('<a href="#topBtn" class="selectedRestaurang" id='+idCounterTwo+'>' + results[i].name + '</a>');
                 listTwoArray.push(results[i]);
                 idCounterTwo++;
             }
         }
-
 		createUserMarker();
 	}
 }
