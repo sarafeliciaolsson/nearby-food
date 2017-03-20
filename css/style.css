@@ -71,7 +71,6 @@
 }
 
 
-
 .hide{
     display: none;
     opacity: 0;
@@ -110,6 +109,10 @@
 
 
 
+}
+    
+#smallHr {
+    padding: 0px;
 }
 
 
@@ -182,7 +185,6 @@ html, body {
     text-decoration: none !important;
     color: black;
     padding-bottom: 10px;
-    cursor: pointer; cursor: hand; 
 }
 
 .selectedRestaurang:hover {
@@ -190,7 +192,9 @@ html, body {
 }
 
 
-
+#footer {
+    margin: -23px !important;
+}
 
 
 
@@ -202,7 +206,11 @@ html, body {
     }
 
     #topBtn {
-        margin-top: 30px !important;
+        margin-top: 15px !important;
+    }
+    
+    #clickOnRestaurant {
+        margin-top: 15px;
     }
 
 }
@@ -225,9 +233,14 @@ html, body {
     
     
     #topBtn {
-        margin-top: 100px;
-        margin-bottom: 30px;
+        margin-top: 40px;
+        margin-bottom: 15px;
     }
+    
+    #clickOnRestaurant {
+        margin-top: 15px;
+    }
+
     
 
 }
@@ -246,9 +259,14 @@ html, body {
     }
 
     #topBtn {
-        margin-top: 100px;
-        margin-bottom: 30px;
+        margin-top: 40px;
+        margin-bottom: 15px;
     }
+    
+    #clickOnRestaurant {
+        margin-top: 15px;
+    }
+
 
     hr.small {
         margin-bottom: 50px;
