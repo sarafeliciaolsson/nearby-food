@@ -89,7 +89,7 @@ $("#searchBtn").click(function(){
         scrollTop: $("#portfolio").offset().top
     	}, 2000);
 	}else{
-		alert("Skriv in adress");
+		alert("Something went wrong, write in your adress or get your location!");
 	}
 });
 
