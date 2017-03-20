@@ -212,19 +212,39 @@ function createMarker(place) {
 		};
 		service.getDetails(request, function(details, status) {
 			console.log(details)
-			infowindow.setContent([
-			details.name,
-			details.formatted_address,
-			'<a href="' + details.website +'">' + details.website + '</a>',
-			details.opening_hours.weekday_text[0],
-			details.opening_hours.weekday_text[1],
-			details.opening_hours.weekday_text[2],
-			details.opening_hours.weekday_text[3],
-			details.opening_hours.weekday_text[4],
-			details.opening_hours.weekday_text[5],
-			details.opening_hours.weekday_text[6],
-			'Betyg: ' + details.rating,
-			details.formatted_phone_number].join("<br />"));
+
+
+
+
+
+
+			if (details.opening_hours){
+				infowindow.setContent([
+				details.name,
+				details.formatted_address,
+				'<a href="' + details.website +'">' + details.website + '</a>',
+				details.opening_hours.weekday_text[0],
+				details.opening_hours.weekday_text[1],
+				details.opening_hours.weekday_text[2],
+				details.opening_hours.weekday_text[3],
+				details.opening_hours.weekday_text[4],
+				details.opening_hours.weekday_text[5],
+				details.opening_hours.weekday_text[6],
+				'Betyg: ' + details.rating,
+				details.formatted_phone_number].join("<br />"));
+			}else{
+				infowindow.setContent([
+				details.name,
+				details.formatted_address,
+				'<a href="' + details.website +'">' + details.website + '</a>',
+				'Betyg: ' + details.rating,
+				details.formatted_phone_number].join("<br />"));
+			}
+
+
+
+
+
 		  infowindow.open(map, marker);
 
 		});
