@@ -43,7 +43,7 @@ function autoCompleteFunction(){
 * funktionen tar reda på användarens position
 */
 $("#getLocationBtn").click(function() {
-	isGetLocationChecked = true;
+
 	var location_timeout = setTimeout("geolocFail()", 10000);
 	document.getElementById('getLocationBtn').innerHTML= "Loading...  <span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
 
@@ -54,8 +54,12 @@ $("#getLocationBtn").click(function() {
 			console.log(userPosition);
 			makeSearch(userPosition);
       document.getElementById('getLocationBtn').innerHTML= "Got it ✓";
-			var button = document.querySelector("#searchBtn")
-			button.className = "btn btn-dark btn-lg activated";
+			if (position){
+				var button = document.querySelector("#searchBtn")
+				button.className = "btn btn-dark btn-lg activated";
+				isGetLocationChecked = true;
+			}
+
 		},function(error) {
 				document.getElementById('getLocationBtn').innerHTML= "Something went wrong   &#10006;";
         	clearTimeout(location_timeout);
