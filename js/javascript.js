@@ -72,12 +72,9 @@ $("#getLocationBtn").click(function() {
 });
 
 $("#searchBtn").click(function(){
-	if(isGetLocationChecked == true){
-		show();
-		$('html, body').animate({
-            scrollTop: $("#portfolio").offset().top
-		}, 2000);
-	}else if(isGetLocationChecked == false && $('#pac-input').val().length != 0){
+	if($('#pac-input').val().length != 0){
+        document.getElementById('resultFromAPI').innerHTML= " ";
+        document.getElementById('resultTwoFromAPI').innerHTML= " ";
 		var place = searchBox.getPlace();
 		var latitude = place.geometry.location.lat();
 		var longitude = place.geometry.location.lng();
@@ -87,8 +84,13 @@ $("#searchBtn").click(function(){
 		$('html, body').animate({
             scrollTop: $("#portfolio").offset().top
     	}, 2000);
+	}else if(isGetLocationChecked == true){
+		show();
+		$('html, body').animate({
+            scrollTop: $("#portfolio").offset().top
+		}, 2000);  
 	}else{
-		alert("Something went wrong, write in your adress or get your location!");
+		alert("Something went wrong, please write in your adress or get your location!");
 	}
 });
 
