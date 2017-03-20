@@ -72,6 +72,7 @@ $("#getLocationBtn").click(function() {
 });
 
 $("#searchBtn").click(function(){
+
 	if($('#pac-input').val().length != 0){
         document.getElementById('resultFromAPI').innerHTML= " ";
         document.getElementById('resultTwoFromAPI').innerHTML= " ";
@@ -84,11 +85,12 @@ $("#searchBtn").click(function(){
 		$('html, body').animate({
             scrollTop: $("#portfolio").offset().top
     	}, 2000);
+			document.getElementById('pac-input').value= "";
 	}else if(isGetLocationChecked == true){
 		show();
 		$('html, body').animate({
             scrollTop: $("#portfolio").offset().top
-		}, 2000);  
+		}, 2000);
 	}else{
 		alert("Something went wrong, please write in your adress or get your location!");
 	}
@@ -155,7 +157,7 @@ function createUserMarker(){
 		title: 'Din position',
 		icon: 'http://maps.google.com/mapfiles/ms/icons/blue.png'
 	});
-    
+
 	google.maps.event.addListener(userMarker, 'click', function() {
 		infowindow.setContent("Your position");
 		infowindow.open(map, this);
@@ -220,7 +222,7 @@ function createMarker(place) {
 			'Betyg: ' + details.rating,
 			details.formatted_phone_number].join("<br />"));
 		  infowindow.open(map, marker);
-            
+
 		});
 	})
 
