@@ -62,7 +62,7 @@ $("#getLocationBtn").click(function() {
 			document.getElementById('resultFromAPI').innerHTML= " ";
 			document.getElementById('resultTwoFromAPI').innerHTML= " ";
 		},function(error) {
-            document.getElementById('getLocationBtn').innerHTML= "Something went wrong   &#10006;";
+            document.getElementById('getLocationBtn').innerHTML= "Access denied   &#10006;";
             clearTimeout(location_timeout);
 		});
 	} else {
