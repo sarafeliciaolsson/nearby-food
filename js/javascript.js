@@ -53,14 +53,16 @@ $("#getLocationBtn").click(function() {
 			userPosition = {lat:position.coords.latitude, lng: position.coords.longitude};
 			console.log(userPosition);
 			makeSearch(userPosition);
-      		document.getElementById('getLocationBtn').innerHTML= "Got it ✓";
+      document.getElementById('getLocationBtn').innerHTML= "Got it ✓";
 			var button = document.querySelector("#searchBtn")
 			button.className = "btn btn-dark btn-lg activated";
 		},function(error) {
+				document.getElementById('getLocationBtn').innerHTML= "Something went wrong   &#10006;";
         	clearTimeout(location_timeout);
         	geolocFail();
 		});
 	} else {
+				document.getElementById('getLocationBtn').innerHTML= "Something went wrong   &#10006;";
         alert("Geolocation is not supported by this browser.");
     }
 });
