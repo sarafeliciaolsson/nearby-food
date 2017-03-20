@@ -59,7 +59,8 @@ $("#getLocationBtn").click(function() {
 				button.className = "btn btn-dark btn-lg activated";
 				isGetLocationChecked = true;
 			}
-
+			document.getElementById('resultFromAPI').innerHTML= " ";
+			document.getElementById('resultTwoFromAPI').innerHTML= " ";
 		},function(error) {
 				document.getElementById('getLocationBtn').innerHTML= "Something went wrong   &#10006;";
         	clearTimeout(location_timeout);
