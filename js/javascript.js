@@ -8,6 +8,7 @@ var listArray = new Array();
 var listTwoArray = new Array();
 var searchBox;
 var isGetLocationChecked = false;
+var userMarker;
 
 /*
 * Funktion som initiera Google Maps kartan och tar redan
@@ -53,9 +54,9 @@ $("#getLocationBtn").click(function() {
 			userPosition = {lat:position.coords.latitude, lng: position.coords.longitude};
 			console.log(userPosition);
 			makeSearch(userPosition);
-            document.getElementById('getLocationBtn').innerHTML= "Got it ✓";
+            document.getElementById("getLocationBtn").innerHTML= "Got it ✓";
 			if (position){
-				var button = document.querySelector("#searchBtn")
+				var button = document.querySelector("#searchBtn");
 				button.className = "btn btn-dark btn-lg activated";
 				isGetLocationChecked = true;
 			}
@@ -117,7 +118,7 @@ function makeSearch(userPosition){
 	  	radius: 1000,
 	  	type: ['restaurant'],
 		opennow: true
-	}
+	};
 	service.nearbySearch(request, callback);
 
 }
@@ -151,7 +152,10 @@ function callback(results, status) {
 * Funktion som skapar markern för användarens position i kartan
 */
 function createUserMarker(){
-	var userMarker = new google.maps.Marker({
+	if (userMarker){
+		alert("USERMARKER FINNS")
+	}
+	userMarker = new google.maps.Marker({
 		position: userPosition,
 		map: map,
 		title: 'Din position',
