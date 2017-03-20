@@ -19,7 +19,7 @@ function initMap() {
 	  zoom: 12,
       scrollwheel: false
 	});
-	
+
 	service = new google.maps.places.PlacesService(map);
 	infowindow = new google.maps.InfoWindow();
 	autoCompleteFunction();
@@ -46,7 +46,7 @@ $("#getLocationBtn").click(function() {
 	isGetLocationChecked = true;
 	var location_timeout = setTimeout("geolocFail()", 10000);
 	document.getElementById('getLocationBtn').innerHTML= "Loading...  <span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
-	
+
 	if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position){
 			clearTimeout(location_timeout);
@@ -72,18 +72,18 @@ $("#searchBtn").click(function(){
 			scrollTop: $("#portfolio").offset().top
 		}, 2000);
 	}else if(isGetLocationChecked == false && $('#pac-input').val().length != 0){
-		var place = searchBox.getPlace(); 
+		var place = searchBox.getPlace();
 		var latitude = place.geometry.location.lat();
 		var longitude = place.geometry.location.lng();
 		var location = {lat: latitude, lng: longitude};
-		makeSearch(location);	
+		makeSearch(location);
 		show();
 		$('html, body').animate({
         scrollTop: $("#portfolio").offset().top
     	}, 2000);
 	}else{
 		alert("Skriv in adress");
-	}	
+	}
 });
 
 
@@ -200,7 +200,7 @@ function createMarker(place) {
 			infowindow.setContent([
 			details.name,
 			details.formatted_address,
-			details.website,
+			'<a href="' + details.website +'">' + details.website + '</a>',
 			details.opening_hours.weekday_text[0],
 			details.opening_hours.weekday_text[1],
 			details.opening_hours.weekday_text[2],
@@ -245,6 +245,3 @@ function show(){
 });
 
 }
-
-
-
