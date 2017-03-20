@@ -86,6 +86,8 @@ $("#searchBtn").click(function(){
 		$('html, body').animate({
             scrollTop: $("#portfolio").offset().top
     	}, 2000);
+			var placeholder = document.getElementById('pac-input').value
+			document.getElementById('pac-input').placeholder= placeholder
 			document.getElementById('pac-input').value= "";
 	}else if(isGetLocationChecked == true){
 		show();
