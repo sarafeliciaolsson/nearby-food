@@ -67,7 +67,7 @@ $("#getLocationBtn").click(function() {
         	geolocFail();
 		});
 	} else {
-				document.getElementById('getLocationBtn').innerHTML= "Something went wrong   &#10006;";
+				document.getElementById('getLocationBtn').innerHTML= "Geolocation not supported";
         alert("Geolocation is not supported by this browser.");
     }
 });
