@@ -260,7 +260,7 @@ function createMarker(place) {
 
 
 function show(){
-    var menuSection = document.querySelector(".menu");
+    var menuSection = document.querySelector("#menuPlacement");
 		var portfolio = document.querySelector("#portfolio");
     var mapSection = document.querySelector("#contact");
     var footerSection = document.querySelector("#footer");
