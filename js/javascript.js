@@ -193,6 +193,7 @@ $('#resultTwoFromAPI').on('click', '.selectedRestaurang', function(){
 function createMarker(place) {
 	var los = place.geometry.location;
 	var infowindow = new google.maps.InfoWindow({ map: map });
+    infowindow.close();
 	var marker = new google.maps.Marker({
 	  map: map,
 	  position: place.geometry.location
@@ -215,9 +216,10 @@ function createMarker(place) {
 			details.opening_hours.weekday_text[4],
 			details.opening_hours.weekday_text[5],
 			details.opening_hours.weekday_text[6],
-			'Betyg ' + details.rating,
+			'Betyg: ' + details.rating,
 			details.formatted_phone_number].join("<br />"));
 		  infowindow.open(map, marker);
+            
 		});
 	})
 
