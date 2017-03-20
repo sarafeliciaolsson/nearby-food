@@ -53,7 +53,7 @@ $("#getLocationBtn").click(function() {
 			userPosition = {lat:position.coords.latitude, lng: position.coords.longitude};
 			console.log(userPosition);
 			makeSearch(userPosition);
-      document.getElementById('getLocationBtn').innerHTML= "Got it ✓";
+            document.getElementById('getLocationBtn').innerHTML= "Got it ✓";
 			if (position){
 				var button = document.querySelector("#searchBtn")
 				button.className = "btn btn-dark btn-lg activated";
@@ -62,12 +62,11 @@ $("#getLocationBtn").click(function() {
 			document.getElementById('resultFromAPI').innerHTML= " ";
 			document.getElementById('resultTwoFromAPI').innerHTML= " ";
 		},function(error) {
-				document.getElementById('getLocationBtn').innerHTML= "Something went wrong   &#10006;";
-        	clearTimeout(location_timeout);
-        	geolocFail();
+            document.getElementById('getLocationBtn').innerHTML= "Something went wrong   &#10006;";
+            clearTimeout(location_timeout);
 		});
 	} else {
-				document.getElementById('getLocationBtn').innerHTML= "Geolocation not supported";
+        document.getElementById('getLocationBtn').innerHTML= "Geolocation not supported";
         alert("Geolocation is not supported by this browser.");
     }
 });
@@ -76,7 +75,7 @@ $("#searchBtn").click(function(){
 	if(isGetLocationChecked == true){
 		show();
 		$('html, body').animate({
-			scrollTop: $("#portfolio").offset().top
+            scrollTop: $("#portfolio").offset().top
 		}, 2000);
 	}else if(isGetLocationChecked == false && $('#pac-input').val().length != 0){
 		var place = searchBox.getPlace();
@@ -86,7 +85,7 @@ $("#searchBtn").click(function(){
 		makeSearch(location);
 		show();
 		$('html, body').animate({
-        scrollTop: $("#portfolio").offset().top
+            scrollTop: $("#portfolio").offset().top
     	}, 2000);
 	}else{
 		alert("Something went wrong, write in your adress or get your location!");
@@ -154,9 +153,9 @@ function createUserMarker(){
 		title: 'Din position',
 		icon: 'http://maps.google.com/mapfiles/ms/icons/blue.png'
 	});
-
+    
 	google.maps.event.addListener(userMarker, 'click', function() {
-		infowindow.setContent("Din position");
+		infowindow.setContent("Your position");
 		infowindow.open(map, this);
 	});
 }
