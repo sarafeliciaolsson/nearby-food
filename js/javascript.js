@@ -153,7 +153,7 @@ function callback(results, status) {
 */
 function createUserMarker(){
 	if (userMarker){
-		alert("USERMARKER FINNS")
+		userMarker.setMap(null);
 	}
 	userMarker = new google.maps.Marker({
 		position: userPosition,
