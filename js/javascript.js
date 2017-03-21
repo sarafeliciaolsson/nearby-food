@@ -27,16 +27,11 @@ function initMap() {
 }
 
 function autoCompleteFunction(){
-// Create the search box and link it to the UI element.
   var input = document.getElementById('pac-input');
   searchBox = new google.maps.places.Autocomplete(input);
-
-  // Bias the SearchBox results towards current map's viewport.
   map.addListener('bounds_changed', function() {
     searchBox.setBounds(map.getBounds());
   });
-
-  //var markers = [];
 }
 
 /*
@@ -44,7 +39,6 @@ function autoCompleteFunction(){
 * funktionen tar reda på användarens position
 */
 $("#getLocationBtn").click(function() {
-
 	var location_timeout = setTimeout("geolocFail()", 10000);
 	document.getElementById('getLocationBtn').innerHTML= "Locating...  <span class='glyphicon glyphicon-refresh glyphicon-refresh-animate'></span>";
 
@@ -73,7 +67,6 @@ $("#getLocationBtn").click(function() {
 });
 
 $("#searchBtn").click(function(){
-
 	if($('#pac-input').val().length != 0){
         document.getElementById('resultFromAPI').innerHTML= " ";
         document.getElementById('resultTwoFromAPI').innerHTML= " ";
@@ -122,7 +115,6 @@ function makeSearch(userPosition){
 		opennow: true
 	};
 	service.nearbySearch(request, callback);
-
 }
 
 /*
@@ -183,6 +175,7 @@ $('#resultFromAPI').on('click', '.selectedRestaurang', function(){
         scrollTop: $("#contact").offset().top
     }, 2000);
 });
+
 $('#resultTwoFromAPI').on('click', '.selectedRestaurang', function(){
 	console.log(this.id);
 	console.log(listTwoArray[this.id]);
@@ -209,17 +202,10 @@ function createMarker(place) {
 	});
 
 	marker.addListener('click', function(){
-		var request = {
-			reference: place.reference
-		};
+		var request = { reference: place.reference };
+		
 		service.getDetails(request, function(details, status) {
 			console.log(details)
-
-
-
-
-
-
 			if (details.opening_hours){
 				infowindow.setContent([
 				details.name,
@@ -242,44 +228,32 @@ function createMarker(place) {
 				'Betyg: ' + details.rating,
 				details.formatted_phone_number].join("<br />"));
 			}
-
-
-
-
-
 		  infowindow.open(map, marker);
-
 		});
 	})
-
 	map.setZoom(15);
 	map.panTo(marker.position);
 }
 
+
 // ----- DÖLJER ALLT UTOM FÖRSTASIDAN I FÖRSTA LÄGET & VISAR ALLT NÄR MAN TRYCKER PÅ SÖK -----
-
-
-
-
 function show(){
     var menuSection = document.querySelector("#menuPlacement");
-		var portfolio = document.querySelector("#portfolio");
+	var portfolio = document.querySelector("#portfolio");
     var mapSection = document.querySelector("#contact");
     var footerSection = document.querySelector("#footer");
-		var map = document.querySelector("#map")
-
+	var map = document.querySelector("#map")
 
     menuSection.className = "visShow";
-		portfolio.className = "show"
+	portfolio.className = "show"
     mapSection.className = "show";
     footerSection.className = "show";
-		map.className ="show"
+	map.className ="show"
 
-		$(document).ready(function() {
-    $(window).resize(function() {
-        google.maps.event.trigger(map, 'resize');
-    });
-    google.maps.event.trigger(map, 'resize');
-});
-
+	$(document).ready(function() {
+		$(window).resize(function() {
+			google.maps.event.trigger(map, 'resize');
+		});
+		google.maps.event.trigger(map, 'resize');
+	});
 }
