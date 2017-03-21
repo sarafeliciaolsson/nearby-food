@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,59 +20,41 @@
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
-
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 </head>
-
 <body>
-
     <!-- Navigation -->
     <div id="menuPlacement" class="menu">
-    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
-    <nav id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
-            <li class="sidebar-brand">
-                <a href="#top" onclick=$("#menu-close").click();>Nearby Food</a>
-            </li>
-            <li>
-                <a href="#top" onclick=$("#menu-close").click();>Sök</a>
-            </li>
-            <li>
-                <a href="#portfolio" onclick=$("#menu-close").click();>Restauranger</a>
-            </li>
-            <li>
-                <a href="#map" onclick=$("#menu-close").click();>Karta</a>
-            </li>
-        </ul>
-    </nav>
-        </div>
-
+		<a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
+		<nav id="sidebar-wrapper">
+			<ul class="sidebar-nav">
+				<a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+				<li class="sidebar-brand">
+					<a href="#top" onclick=$("#menu-close").click();>Nearby Food</a>
+				</li>
+				<li>
+					<a href="#top" onclick=$("#menu-close").click();>Sök</a>
+				</li>
+				<li>
+					<a href="#portfolio" onclick=$("#menu-close").click();>Restauranger</a>
+				</li>
+				<li>
+					<a href="#map" onclick=$("#menu-close").click();>Karta</a>
+				</li>
+			</ul>
+		</nav>
+    </div>
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
             <h1>Nearby Food</h1>
             <h3>Finds restaurants near you</h3>
             <br>
-
-              <input id="pac-input" class="btn ourBtn controls" type="text" placeholder="Write adress here...">
-
-
-
+            <input id="pac-input" class="btn ourBtn controls" type="text" placeholder="Write adress here...">
             <button id="getLocationBtn" class="btn ourBtn blackText">Get my location</button>
-        <br>
+        	<br>
             <button id="searchBtn" class="btn btn-dark btn-lg" >Sök</button>
         </div>
     </header>
-
-
     <!-- Portfolio -->
     <section id="portfolio" class="portfolio">
         <div class="container">
@@ -84,17 +64,14 @@
                     <hr class="small">
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-1">
-
-                                <div id="resultFromAPI"></div>
-
+                        	<div id="resultFromAPI"></div>
                         </div>
                         <div class="col-sm-5">
                             <div id="resultTwoFromAPI"></div>
                         </div>
                     </div>
-                   
                     <hr id="smallHr" class="small">
-                     <p id="clickOnRestaurant">Click on a restaurant above to show location on map</p>
+                    <p id="clickOnRestaurant">Click on a restaurant above to show location on map</p>
                     <!-- /.row (nested) -->
                     <a href="#" id="topBtn" class="btn btn-dark">Go to top</a>
                 </div>
@@ -104,23 +81,16 @@
         </div>
         <!-- /.container -->
     </section>
-
-
-
-
     <!-- Map -->
     <section id="contact" class="hide">
 		<div id="map"></div>
     </section>
-
-
     <!-- Footer -->
     <footer id="footer">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 text-center">
                     <br>
-
                     <hr class="small">
                     <p class="text-muted">Copyright &copy; Nearby Food 2017</p>
                 </div>
@@ -128,22 +98,12 @@
         </div>
         <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
     </footer>
-
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
     <script src="js/script.js"></script>
-
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/javascript.js"></script>
-	 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDDNWX9y9wRPUKzE_7uCHQroTO272PqCc&libraries=places&callback=initMap" async defer></script>
-
-
-
-
-
-
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDDNWX9y9wRPUKzE_7uCHQroTO272PqCc&libraries=places&callback=initMap" async defer></script>
 </body>
-
-
 </html>
