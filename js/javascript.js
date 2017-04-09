@@ -9,7 +9,8 @@ var listTwoArray = new Array();
 var searchBox;
 var isGetLocationChecked = false;
 var userMarker;
-
+var d = new Date();
+var foodTime;
 /*
 * Funktion som initiera Google Maps kartan och tar redan
 */
@@ -24,6 +25,19 @@ function initMap() {
 	service = new google.maps.places.PlacesService(map);
 	infowindow = new google.maps.InfoWindow();
 	autoCompleteFunction();
+	
+	var currentTime = (d.getHours() + "" + d.getMinutes());
+	console.log(currentTime);
+	if(currentTime >= 0600 && currentTime < 1000){
+		foodTime = "Breakfast";
+	}else if(currentTime >= 1000 && currentTime < 1600){
+		foodTime = "Lunch";
+	}else if(currentTime >= 1600 && currentTime <= 2400){
+		foodTime = "Dinner";
+	}else{
+		foodTime = null;
+	}
+	console.log(foodTime);
 }
 
 function autoCompleteFunction(){
@@ -112,6 +126,7 @@ function makeSearch(userPosition){
 		location: userPos,
 	  	radius: 1000,
 	  	type: ['restaurant'],
+		keyword: foodTime,
 		opennow: true
 	};
 	service.nearbySearch(request, callback);
