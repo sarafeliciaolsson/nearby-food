@@ -271,7 +271,10 @@ html, body {
     hr.small {
         margin-bottom: 50px;
     }
-
-
-
+}
+	
+@media screen and (min-width: 10px){
+	*{
+		font-size: 10px;
+	}
 }
